@@ -5,12 +5,12 @@ export async function getData(number){
         "https://jsonplaceholder.typicode.com/users/" + number
         );
 
-    const { data: post1 } = await axios(
+    const { data: post } = await axios(
         "https://jsonplaceholder.typicode.com/posts/" + number
         );
 
     console.log(users);
-    console.log(post1);
+    console.log(post);
 };
 
 
