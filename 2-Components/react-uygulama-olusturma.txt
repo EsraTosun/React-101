@@ -1,0 +1,7 @@
+npx create-react-app my-app
+cd my-app
+npm start
+
+Terminale yukarıdaki komutları yazarız
+Terminalde projeyi oluşturmak istediğimiz class da olmalıyız.
+my-app => projemizin ismi
