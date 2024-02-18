@@ -27,6 +27,10 @@ function App() {
         isLoggedIn={true} 
         age={29} 
         friends={friends}
+        adress = {{
+          title: "Ataşehir/İstanbul",
+          zip: 34755
+        }}
       />
     </div>
   );
