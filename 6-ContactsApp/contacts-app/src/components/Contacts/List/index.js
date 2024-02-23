@@ -25,9 +25,14 @@ const List = ( {contacts} ) => {
 
             <ul className='list'>
                 {filtered.map((contact,i)  => (
-                    <li key={i}>{contact.fullname}</li>
+                    <li key={i}>
+                        <span>{contact.fullname}</span>
+                        <span>{contact.phone_number}</span>
+                    </li>
                 ))}
             </ul>
+
+            <p>Total contacts  ({filtered.length}) </p>
         </div>
     );
    
