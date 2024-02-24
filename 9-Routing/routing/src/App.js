@@ -1,16 +1,5 @@
 import './App.css';
 
-//Pages(Sayfalar)
-import Home from './pages/Home';
-import Users from './pages/Users';
-import Contact from './pages/Contact';
-import UserDetails from './pages/UserDetails';
-import Login from './pages/Login';
-import DashboardLayout from './layouts/DashboardLayout';
-import AuthLayout from './layouts/AuthLayout';
-
-import Menu from './components/Menu';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,6 +8,20 @@ import {
   Link,
   BrowserRouter
 } from "react-router-dom";
+
+//Pages(Sayfalar)
+import Home from './pages/Dashboard/Home';
+import Users from './pages/Dashboard/Users';
+import Contact from './pages/Dashboard/Contact';
+import UserDetails from './pages/Dashboard/UserDetails';
+import Login from './pages/Auth/Login';
+import DashboardLayout from './layouts/Dashboard';
+import AuthLayout from './layouts/Auth';
+import Register from './layouts/Auth/Register';
+import Error404 from './pages/Error404';
+
+
+
 
 
 function App() {
@@ -34,7 +37,9 @@ function App() {
         <Route path='auth' element={<AuthLayout />}>
           <Route index element={<Login />} />
           {/* Auto girer girmez login saymasını görmek istediğimiz için index yazıldı */}
+          <Route path='register' element={<Register />} />
         </Route>
+        <Route path='*' element={<Error404 />} />
       </Routes>
     </BrowserRouter>
   );
