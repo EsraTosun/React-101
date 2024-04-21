@@ -1,9 +1,13 @@
 import React from 'react'
 import { Formik, useFormik, Field, Form } from 'formik';
 
+import validationSchema from "./validations"
+
+import "./styles.css"
+
 
 function Contact() {
-  const { handleSubmit, handleChange, values, isSubmitting} = useFormik({
+  const { handleSubmit, handleChange,handleBlur, values, isSubmitting, errors, touched} = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -16,9 +20,20 @@ function Contact() {
       await new Promise((r) => setTimeout(r,1000));
       console.log(values);
       console.log(bag);
+
+      if(values.email === 'test@test.com') {
+        return bag.setErrors({ 
+          email: 'Bu mail adresi zaten kullanılıyor',
+          message: 'Lütfen geçersiz karakterler kullanmayınız'
+        });
+      }
       bag.resetForm(); //Formdaki işlem bittiğinde reset eder
-    }
+    },
+    validationSchema,
   });
+
+  console.log(touched);
+
   return (
     <div>
       <h2>İletişim</h2>
@@ -35,7 +50,11 @@ function Contact() {
                 disabled = {isSubmitting}
                 // isSubmitting => Yukarıda verilen süre kadar işlem yapılmasını engeller
                 onChange={handleChange("firsName")}
+                onBlur={handleBlur("firsName")}
               />
+              { 
+                errors.firstName && touched.firstName && <div className='error' > {errors.firstName} </div>
+              }
             </div>
 
             <div>
@@ -47,7 +66,11 @@ function Contact() {
                 value={values.lastName}
                 disabled = {isSubmitting}
                 onChange={handleChange("lastName")}
+                onBlur={handleBlur("lastName")}
               />
+              { 
+                errors.lastName && touched.lastName && <div className='error' > {errors.lastName} </div>
+              }
             </div>
             
             <div>
@@ -60,7 +83,11 @@ function Contact() {
                 value={values.email}
                 disabled = {isSubmitting}
                 onChange={handleChange("email")}
+                onBlur={handleBlur("email")}
               />
+              { 
+                errors.email && touched.email && <div className='error' > {errors.email} </div>
+              }
             </div>
             
             <div>
@@ -73,7 +100,11 @@ function Contact() {
                 value={values.message}
                 disabled = {isSubmitting}
                 onChange={handleChange("message")}
+                onBlur={handleBlur("message")}
               />
+              { 
+                errors.message && touched.message && <div className='error' > {errors.message} </div>
+              }
             </div>
 
             {/* isSubmitting => Buton bir saniye tıklanamaz oldu */}
