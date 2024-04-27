@@ -1,15 +1,17 @@
-import React, {useContext} from 'react' ;
-import ThemeContext from '../contexs/ThemeContext';
+import React from 'react' ;
+import {useTheme} from '../contexs/ThemeContext';
 
 function ChangeTheme() {
 
-    const data = useContext(ThemeContext);
-    console.log(data);
+    const { theme, toggleTheme } = useTheme();
+    console.log(theme);
 
     return (
         <div>
-            <div>Aktif Tema: {data}</div>
-            <button> Change Theme</button>
+            <div>Aktif Tema: {theme} </div>
+            <button onClick={toggleTheme}> 
+                Temayı Değiştir
+            </button>
         </div>
     );
 }

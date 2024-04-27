@@ -1,15 +1,14 @@
-import ChangeTheme from "./components/ChangeTheme";
-import ThemeContext from "./contexs/ThemeContext";
+import './style.css';
+import { LangContextProvider } from "./contexs/LangContext";
+import { ThemeContextProvider } from "./contexs/ThemeContext";
+import Container from './Container';
 
-function App() {
-  return (
-    <div className="App">
-      {/* Veriye erişmemizi sağlar */}
-      <ThemeContext.Provider value="light">
-        <ChangeTheme />  {/* Temayı değiştirmemizi sağlar */}
-      </ThemeContext.Provider>
-    </div>
-  );
-}
+const App = () => (
+  <LangContextProvider>
+    <ThemeContextProvider>
+      <Container />
+    </ThemeContextProvider> 
+  </LangContextProvider>
+);
 
 export default App;

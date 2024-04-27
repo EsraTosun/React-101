@@ -1,7 +1,43 @@
-import { createContext } from "react" ;
+import { createContext, useState, useEffect, useContext} from "react" ;
 
 const ThemeContext = createContext();
 
-export default ThemeContext;
+const defaultTheme = localStorage.getItem("theme") || "light";
+
+export const ThemeContextProvider = ({children}) => {
+    const [ theme, setTheme ] = useState(defaultTheme);
+
+    useEffect(() => {
+        localStorage.setItem("theme",theme);
+    },[theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    };
+
+    const values = {
+        theme, 
+        toggleTheme,
+    };
+
+
+    return (
+        <ThemeContext.Provider value={values}>
+            {children}
+        </ThemeContext.Provider> 
+    );
+}
+
+export const useTheme = () => {
+    const context = useContext(ThemeContext);
+
+    if (context === undefined) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
+
+    return context;
+};
+
+// export default ThemeContext;
 
 //Website nin tema (koyu yada açık mod) sını oluşturuyoruz
